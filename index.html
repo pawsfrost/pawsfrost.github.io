@@ -15,11 +15,30 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     
     <!-- Link to our stylesheet -->
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Entry screen overlay -->
+    <div id="entry-screen" class="entry-screen">
+        <div class="entry-content">
+            <h1 class="entry-title">♡ lilminy ♡</h1>
+            <button id="enter-btn" class="enter-button">Click to enter</button>
+        </div>
+    </div>
+
+    <!-- Music toggle button -->
+    <button id="music-toggle" class="music-toggle">
+        <i data-lucide="volume-2" id="music-icon"></i>
+    </button>
+
+    <!-- Hidden audio element -->
+    <audio id="background-music" loop>
+        <source src="music.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
     <!-- Main container for the entire page -->
-    <div class="container">
+    <div class="container" id="main-content">
         <!-- Profile section containing image and bio -->
         <div class="profile">
             <!-- Profile image with pink border -->
@@ -89,9 +108,56 @@
         </footer>
     </div>
 
-    <!-- Initialize Lucide icons -->
+    <!-- Initialize Lucide icons and handle interactions -->
     <script>
+        // Initialize Lucide icons
         lucide.createIcons();
+
+        // Get elements
+        const entryScreen = document.getElementById('entry-screen');
+        const enterBtn = document.getElementById('enter-btn');
+        const mainContent = document.getElementById('main-content');
+        const musicToggle = document.getElementById('music-toggle');
+        const backgroundMusic = document.getElementById('background-music');
+        const musicIcon = document.getElementById('music-icon');
+
+        let musicPlaying = false;
+
+        // Handle entry screen
+        enterBtn.addEventListener('click', function() {
+            entryScreen.style.opacity = '0';
+            setTimeout(() => {
+                entryScreen.style.display = 'none';
+                mainContent.style.display = 'flex';
+                // Start music when entering
+                backgroundMusic.play().then(() => {
+                    musicPlaying = true;
+                }).catch(e => {
+                    console.log('Audio autoplay prevented:', e);
+                });
+            }, 500);
+        });
+
+        // Handle music toggle
+        musicToggle.addEventListener('click', function() {
+            if (musicPlaying) {
+                backgroundMusic.pause();
+                musicIcon.setAttribute('data-lucide', 'volume-x');
+                musicPlaying = false;
+            } else {
+                backgroundMusic.play().then(() => {
+                    musicIcon.setAttribute('data-lucide', 'volume-2');
+                    musicPlaying = true;
+                }).catch(e => {
+                    console.log('Audio play failed:', e);
+                });
+            }
+            // Re-initialize icons after changing
+            lucide.createIcons();
+        });
+
+        // Set initial volume
+        backgroundMusic.volume = 0.3;
     </script>
 </body>
 </html>
