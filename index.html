@@ -43,20 +43,18 @@
         <div class="profile">
             <!-- Profile image with pink border -->
             <img 
-                src="https://avatar-cyan.vercel.app/api/pfp/1273791779749236741/image"
+                src="https://i.pinimg.com/736x/74/a7/db/74a7db857de0f995fa7ceecf34968908.jpg"
                 alt="Profile"
                 class="profile-image"
             >
             
             <!-- Name and bio text -->
             <h1>lilminy</h1>
-            <p class="bio">♡ she/her ♡ catgirl ♡ gamer ♡</p>
-            <p class="bio">Haii, I'm lilminy, I love lying in bed under a warm blanket on a foggy winter's day.<br>I spent a lot of my time on <a href="https://app.minehut.com/">minehut.com</a> in the lobby just chilling with other people. If I'm not in the Minehut lobby im probably playing another server on Minehut.<br>I'm a minecraft builder who loves to build trees, especially colored trees.</p>
-            <p> </p>
-            <p class="bio">"[...] Hope is the last to die." - Elie Wiesel</p>
+            <p class="bio">♡ she/her/he ♡ bigender ♡ gamer & introvert ♡</p>
+            <p class="bio">Haii, I'm lilminy, I love lying in bed under a warm blanket on a foggy winter's day.<br>My favorite song is Sailor Song from Gigi Perez.</p>
+            
             <!-- Social links section -->
             <div class="links">
-
                 <!-- YouTube link -->
                 <a href="https://youtube.com/@lilmiiny" target="_blank" rel="noopener noreferrer" class="link-card">
                     <span class="link-content">
@@ -117,18 +115,20 @@
         musicToggle.addEventListener('click', function() {
             if (musicPlaying) {
                 backgroundMusic.pause();
+                musicIcon.innerHTML = '';
                 musicIcon.setAttribute('data-lucide', 'volume-x');
+                lucide.createIcons();
                 musicPlaying = false;
             } else {
                 backgroundMusic.play().then(() => {
+                    musicIcon.innerHTML = '';
                     musicIcon.setAttribute('data-lucide', 'volume-2');
+                    lucide.createIcons();
                     musicPlaying = true;
                 }).catch(e => {
                     console.log('Audio play failed:', e);
                 });
             }
-            // Re-initialize icons after changing
-            lucide.createIcons();
         });
 
         // Set initial volume
