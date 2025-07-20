@@ -115,14 +115,12 @@
         musicToggle.addEventListener('click', function() {
             if (musicPlaying) {
                 backgroundMusic.pause();
-                musicIcon.innerHTML = '';
-                musicIcon.setAttribute('data-lucide', 'volume-x');
+                musicToggle.innerHTML = '<i data-lucide="volume-x"></i>';
                 lucide.createIcons();
                 musicPlaying = false;
             } else {
                 backgroundMusic.play().then(() => {
-                    musicIcon.innerHTML = '';
-                    musicIcon.setAttribute('data-lucide', 'volume-2');
+                    musicToggle.innerHTML = '<i data-lucide="volume-2"></i>';
                     lucide.createIcons();
                     musicPlaying = true;
                 }).catch(e => {
