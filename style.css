@@ -138,6 +138,18 @@ h1 {
     max-width: 28rem;
 }
 
+/* Bio link styles */
+.bio a {
+    color: #ec4899;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.bio a:hover {
+    color: #db2777;
+    text-decoration: underline;
+}
+
 /* Links container styles */
 .links {
     width: 100%;
